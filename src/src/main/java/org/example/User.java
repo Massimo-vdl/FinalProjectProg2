@@ -1,4 +1,11 @@
 package org.example;
 
-public class User {
+public abstract class User {
+    private String username;
+    private String password;
+    private status status;
+
+    public enum status {
+        OWNER, LISTENER
+    }
 }

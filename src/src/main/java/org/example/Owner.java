@@ -1,4 +1,5 @@
 package org.example;
 
-public class Owner {
+public class Owner extends User{
+    private status owner = status.OWNER;
 }

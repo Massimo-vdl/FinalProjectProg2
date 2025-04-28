@@ -1,4 +1,4 @@
 package org.example;
 
-public class Song {
+public class Song extends Audio{
 }
