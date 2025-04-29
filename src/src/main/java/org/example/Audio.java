@@ -3,9 +3,9 @@ package org.example;
 import java.util.Objects;
 
 public abstract class Audio {
-    private String title;
-    private String creator;
-    private int duration;
+    protected String title;
+    protected String creator;
+    protected int duration;
 
     public Audio(String title, String creator, int duration) {
         this.title = title;

@@ -3,9 +3,9 @@ package org.example;
 import java.util.Objects;
 
 public abstract class User {
-    private String username;
-    private String password;
-    private status status;
+    protected String username;
+    protected String password;
+    protected status status;
 
     public User(String username, String password, User.status status) {
         this.username = username;

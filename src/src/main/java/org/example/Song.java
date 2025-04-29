@@ -7,7 +7,14 @@ public class Song extends Audio  implements Playable{
     }
 
     @Override
+    public String toString() {
+        return "Song: " + title + " "+ duration + " sec" +
+                "\n By: " + creator;
+    }
+
+    @Override
     public void play() {
-        // TODO
+        System.out.println("🎵 Now playing: '" + getTitle() +
+                "' by " + getCreator() + " [" + getDuration() + " sec]");
     }
 }
