@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.*;
 
 public class Playlist implements Playable{
     private String title;
@@ -36,6 +34,57 @@ public class Playlist implements Playable{
                 '}';
     }
 
+    /**
+     * displays all the songs in a playlist in the order they were queued
+     */
+    @Override
+    public void play() {
+        // TODO
+    }
+
+    /**
+     * suffles a playlist by playing the audios queued in a random order
+     * @return the playlist in random order
+     */
+    public LinkedList<Playlist> shuffle () {
+        // TODO
+    }
+
+    /**
+     * sorts a playlist into the two audio types Podcast and Song
+     * @return a map where the audio type is the key and the
+     * resulting playlist of just that audio type is the value
+     */
+    public Map<String, Playlist> sortByType() {
+        // TODO
+    }
+
+    /**
+     * sorts a playlist by creator grouping all audios by a creator in groups
+     * @return a map where the creator is the key and the
+     * resulting list of audios made by that creator are the value
+     */
+    public Map<String, List<Audio>> sortByCreator() {
+        // TODO
+    }
+
+    /**
+     * creates a new list were all audios are sorted by time from shortest to longest
+     * @return a list of audio sorted by duration form shortest to longest
+     */
+    public LinkedList<Audio> orderByTime() {
+        // TODO
+    }
+
+    /**
+     * creates a list of audio based on the keyword entered
+     * @param keyword the input keyword
+     * @return a list of audios that include the keyword
+     */
+    public List<Audio> searchByKeyword(String keyword) {
+        // TODO
+    }
+
     public String getTitle() {
         return title;
     }
@@ -58,10 +107,5 @@ public class Playlist implements Playable{
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    @Override
-    public void play() {
-        // TODO
     }
 }

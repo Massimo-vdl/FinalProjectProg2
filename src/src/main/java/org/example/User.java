@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class User {
     protected String username;
     protected String password;
-    protected status status;
+    protected static status status;
 
     public User(String username, String password, User.status status) {
         this.username = username;
