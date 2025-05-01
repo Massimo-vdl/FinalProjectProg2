@@ -1,5 +1,6 @@
 # FinalProjectProg2
-## Scenario : This idea behind my project is to create a playlist editor. It will allow users to interact with a Playlist (Queue<Audio>) which is a queue of type Audio.
+## Scenario : 
+This idea behind my project is to create a playlist editor. It will allow users to interact with a Playlist (Queue<Audio>) which is a queue of type Audio.
 There is a User class of which has two subclasses Owner which can import and export playlists from and to txt files, and there is the Listener subclass which can rate Playlists on a scale from 1 -10.
 Then there is the Audio class which extends to Songs and Podcats, Playlist will have both these audio types in them.
 ## Functionalities : 
