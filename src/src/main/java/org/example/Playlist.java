@@ -35,6 +35,14 @@ public class Playlist implements Playable{
     }
 
     /**
+     * adds an audio at the end of the playlist Queue
+     * @param audio the audio that will be added
+     */
+    public void addAudio(Audio audio) {
+        playlist.offer(audio);
+    }
+
+    /**
      * displays all the songs in a playlist in the order they were queued
      */
     @Override
