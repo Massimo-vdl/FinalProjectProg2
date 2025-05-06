@@ -47,15 +47,47 @@ public class Playlist implements Playable{
      */
     @Override
     public void play() {
-        // TODO
+        if (playlist.isEmpty()) {
+            System.out.println("✅ Finished playing all audios in the playlist.");
+            return;
+        }
+
+        Audio current = playlist.poll();
+        if (current != null) {
+            current.play();
+            try {
+                Thread.sleep(500); // 0.5 second delay (500 milliseconds)
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Playback interrupted.");
+            }
+        }
+
+        play();
     }
 
     /**
      * suffles a playlist by playing the audios queued in a random order
      * @return the playlist in random order
      */
-    public LinkedList<Playlist> shuffle () {
-        // TODO
+    public void shuffle () {
+        List<Audio> audioList = new ArrayList<>(playlist);  // Convert Queue to List
+        Collections.shuffle(audioList);  // Shuffle the List
+
+        System.out.println("🎵 Shuffling and playing the playlist in random order:");
+
+        // Play the shuffled audio
+        for (Audio audio : audioList) {
+            audio.play();
+            try {
+                Thread.sleep(250);  // Delay of 0.25 seconds between each play
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Playback interrupted.");
+            }
+        }
+
+        System.out.println("✅ Finished playing the shuffled playlist.");
     }
 
     /**

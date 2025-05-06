@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Objects;
 
-public abstract class Audio {
+public abstract class Audio implements Playable{
     protected String title;
     protected String creator;
     protected int duration;
@@ -33,6 +33,11 @@ public abstract class Audio {
                 ", creator='" + creator + '\'' +
                 ", duration=" + duration +
                 '}';
+    }
+
+    @Override
+    public void play() {
+
     }
 
     public String getTitle() {
