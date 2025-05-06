@@ -69,4 +69,3 @@ public class Owner extends User{
         // TODO
     }
 }
-
