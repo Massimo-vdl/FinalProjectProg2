@@ -7,6 +7,11 @@ public class Playlist implements Playable{
     private Queue<Audio> playlist;
     private int rating;
 
+    public Playlist() {
+        this.title = "";
+        this.playlist = new LinkedList<>();
+    }
+
     public Playlist(String title, Queue<Audio> playlist) {
         this.title = title;
         this.playlist = new LinkedList<>(playlist);
@@ -96,7 +101,17 @@ public class Playlist implements Playable{
      * resulting playlist of just that audio type is the value
      */
     public Map<String, Playlist> sortByType() {
-        // TODO
+        Playlist songPlaylist = new Playlist();
+        Playlist podcastPlaylist = new Playlist();
+
+        // Iterate through the original playlist and sort by type
+        for (Audio audio : playlist) {
+            if (audio instanceof Song) {
+                songPlaylist.addAudio(audio);  // Add Song to songPlaylist
+            } else if (audio instanceof Podcast) {
+                podcastPlaylist.addAudio(audio);
+            }// Add Podcast to podcastPlaylist
+        }
     }
 
     /**

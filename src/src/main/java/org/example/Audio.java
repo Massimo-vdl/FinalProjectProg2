@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Objects;
 
-public abstract class Audio implements Playable{
+public abstract class Audio implements Playable, Comparable<Audio> {
     protected String title;
     protected String creator;
     protected int duration;
@@ -38,6 +38,11 @@ public abstract class Audio implements Playable{
     @Override
     public void play() {
 
+    }
+
+    @Override
+    public int compareTo(Audio o) {
+        return 0;
     }
 
     public String getTitle() {

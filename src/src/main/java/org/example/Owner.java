@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,9 +64,18 @@ public class Owner extends User{
     /**
      * exports a playlist to a txt file
      * @param playlist the playlist that will be exported
-     * @param filepath the filepath of the txt file to be altered
      */
-    public void exportPlaylist(Playlist playlist, String filepath) {
-        // TODO
+    public void exportPlaylist(Playlist playlist) {
+        try (FileWriter writer = new FileWriter("src/main/java/org/example/Playlist.txt")) {
+            for (Audio audio : playlist.getPlaylist()) {
+                writer.write(audio.getClass().getSimpleName() + "," +
+                        audio.getCreator() + "," +
+                        audio.getTitle() + "," +
+                        audio.getDuration() + "\n");
+            }
+            System.out.println("Playlist successfully exported to " + "src/main/java/org/example/Playlist.txt");
+        } catch (Exception e) {
+            System.out.println("Error exporting playlist: " + e.getMessage());
+        }
     }
 }

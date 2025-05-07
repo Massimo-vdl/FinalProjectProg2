@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Objects;
 
-public abstract class User {
+public abstract class User implements Comparable<User> {
     protected String username;
     protected String password;
     protected static status status;
@@ -29,6 +29,11 @@ public abstract class User {
     @Override
     public String toString() {
         return "User: " + username + '\n' + "Status: " + status + '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return 0;
     }
 
     public String getUsername() {
