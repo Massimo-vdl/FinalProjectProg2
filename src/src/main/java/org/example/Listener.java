@@ -2,9 +2,9 @@ package org.example;
 
 public class Listener extends User{
 
-    public Listener(String username, String password, User.status status, User.status listener) {
+    public Listener(String username, String password) {
         super(username, password, status);
-        this.status = User.status.LISTENER;
+        setStatus(User.status.LISTENER);
     }
 
     /**

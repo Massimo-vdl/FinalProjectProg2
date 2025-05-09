@@ -159,6 +159,8 @@ public class Playlist implements Playable{
         for (Audio audio : playlist) {
             if (audio.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
                 result.add(audio);
+            } else {
+                System.out.println("Keyword not detected");
             }
         }
         return result;
