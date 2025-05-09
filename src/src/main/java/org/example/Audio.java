@@ -37,12 +37,20 @@ public abstract class Audio implements Playable, Comparable<Audio> {
 
     @Override
     public void play() {
-
     }
 
+    /**
+     * compares Audios based on duration then title
+     * @param o the object to be compared.
+     * @return 0 if equal 1 if user1 comes second -1 if user1 comes first
+     */
     @Override
     public int compareTo(Audio o) {
-        return 0;
+        int durationCompare = Integer.compare(this.duration, o.duration);
+        if (durationCompare != 0) {
+            return durationCompare;
+        }
+        return this.title.compareToIgnoreCase(o.title);
     }
 
     public String getTitle() {
