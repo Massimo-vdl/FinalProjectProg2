@@ -112,6 +112,11 @@ public class Playlist implements Playable{
                 podcastPlaylist.addAudio(audio);
             }// Add Podcast to podcastPlaylist
         }
+        Map<String, Playlist> typeMap = new HashMap<>();
+        typeMap.put("Song", songPlaylist);
+        typeMap.put("Podcast", podcastPlaylist);
+
+        return typeMap;
     }
 
     /**
@@ -120,7 +125,18 @@ public class Playlist implements Playable{
      * resulting list of audios made by that creator are the value
      */
     public Map<String, List<Audio>> sortByCreator() {
-        // TODO
+        Map<String, List<Audio>> creatorMap = new HashMap<>();
+
+        for (Audio audio : playlist) {
+            String creator = audio instanceof Song ? ((Song) audio).getCreator()
+                    : audio instanceof Podcast ? ((Podcast) audio).getCreator()
+                    : "Unknown";
+
+            creatorMap.putIfAbsent(creator, new ArrayList<>());
+            creatorMap.get(creator).add(audio);
+        }
+
+        return creatorMap;
     }
 
     /**
@@ -128,7 +144,9 @@ public class Playlist implements Playable{
      * @return a list of audio sorted by duration form shortest to longest
      */
     public LinkedList<Audio> orderByTime() {
-        // TODO
+        List<Audio> sorted = new ArrayList<>(playlist);
+        sorted.sort(Comparator.comparingInt(Audio::getDuration));
+        return new LinkedList<>(sorted);
     }
 
     /**
@@ -137,7 +155,13 @@ public class Playlist implements Playable{
      * @return a list of audios that include the keyword
      */
     public List<Audio> searchByKeyword(String keyword) {
-        // TODO
+        List<Audio> result = new ArrayList<>();
+        for (Audio audio : playlist) {
+            if (audio.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(audio);
+            }
+        }
+        return result;
     }
 
     public String getTitle() {

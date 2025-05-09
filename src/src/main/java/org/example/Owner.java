@@ -10,10 +10,10 @@ import java.util.Scanner;
 public class Owner extends User{
     private List<Playlist> playlists;
 
-    public Owner(String username, String password, User.status status, User.status owner, List<Playlist> playlists) {
+    public Owner(String username, String password, List<Playlist> playlists) {
         super(username, password, status);
         this.playlists = new ArrayList<Playlist>();
-        this.status = User.status.OWNER;
+        setStatus(User.status.OWNER);
     }
 
     /**
