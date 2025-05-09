@@ -1,8 +1,9 @@
 package org.example;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public abstract class User implements Comparable<User> {
+public abstract class User implements Comparator<User> {
     protected String username;
     protected String password;
     protected static status status;
@@ -31,9 +32,19 @@ public abstract class User implements Comparable<User> {
         return "User: " + username + '\n' + "Status: " + status + '}';
     }
 
+    /**
+     * Compares users first by username then by status
+     * @param u1 the first object to be compared.
+     * @param u2 the second object to be compared.
+     * @return 0 if equal 1 if user1 comes second -1 if user1 comes first
+     */
     @Override
-    public int compareTo(User o) {
-        return 0;
+    public int compare(User u1, User u2) {
+        int usernameCompare = u1.getUsername().compareToIgnoreCase(u2.getUsername());
+        if (usernameCompare != 0) {
+            return usernameCompare;
+        }
+        return u1.getStatus().compareTo(u2.getStatus());
     }
 
     public String getUsername() {
