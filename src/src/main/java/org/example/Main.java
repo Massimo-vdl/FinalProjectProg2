@@ -11,13 +11,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //Playlist playlist = new Playlist();
-        //Playlist rockPlaylist = new Playlist();
-        //Playlist chillPlaylist = new Playlist();
-        //Playlist studyPlaylist = new Playlist();
+        Playlist playlist = new Playlist();
+        Playlist rockPlaylist = new Playlist();
+        Playlist chillPlaylist = new Playlist();
+        Playlist studyPlaylist = new Playlist();
 
-        //List<Playlist> playlists = new ArrayList<>(List.of(rockPlaylist, chillPlaylist, studyPlaylist));
-        List<Playlist> playlists = new ArrayList<>();
+        List<Playlist> playlists = new ArrayList<>(List.of(rockPlaylist, chillPlaylist, studyPlaylist));
         Owner owner = new Owner("Massimo", "12345abcde", playlists);
         Listener listener = new Listener("Luca", "abcde12345");
 
@@ -28,6 +27,10 @@ public class Main {
         System.out.print("Password: ");
         String inputPassword = scanner.nextLine();
 
+        /**
+         * this is the user selection screen after the user logs in based on there status they will get different
+         * options for what they can do.
+         */
         if (inputUsername.equals(owner.getUsername()) && inputPassword.equals(owner.getPassword())) {
             System.out.println("✅ Owner logged in successfully!");
             System.out.println("Please select a Playlist to Edit");
@@ -39,7 +42,6 @@ public class Main {
                     "\nEnter your choice here: ");
             Options(scanner, selected, owner);
             System.out.println("Thank you for using PlaylistEditor!");
-
         } else if (inputUsername.equals(listener.getUsername()) && inputPassword.equals(listener.getPassword())) {
             System.out.println("✅ Listener logged in successfully!");
             System.out.println("Please select a Playlist to View: ");
@@ -52,14 +54,14 @@ public class Main {
                     "\nEnter your choice here: ");
             Options(scanner, selected, listener);
             System.out.println("Thank you for using PlaylistEditor!");
-
         } else {
             System.out.println("❌ Login failed. Incorrect credentials.");
         }
     }
 
+
     /**
-     * Calls all the functionalities of Owner and Playlist if the login is successful
+     * Calls all the functionalities of Owner, Listener and Playlist if the login is successful and based on their inputs
      */
     public static void Options(Scanner scanner, Playlist playlist, User user) {
         if (user instanceof Listener && playlist == null) {
@@ -85,9 +87,12 @@ public class Main {
                     if (answer2.equals("export")) {
                         ((Owner) user).exportPlaylist(playlist);
 
-                    } else if (answer2.equals("import")) {
-                        ((Owner) user).importAudio(playlist);
-
+                    } else if (answer2.equals("import")) { //imports audio and adds it to a new playlist
+                        Playlist newPlaylist = ((Owner) user).importAudio();
+                        if (newPlaylist != null) {
+                            ((Owner) user).getPlaylists().add(newPlaylist);
+                            System.out.println("New playlist created and added to owner's collection!");
+                        }
                     } else {
                         System.out.println("No valid option selected");
                     }
@@ -101,6 +106,12 @@ public class Main {
         }
     }
 
+    /**
+     * allows the user to select a playlist by its index
+     * @param scanner imported scanner
+     * @param playlists the list of playlist of which on playlist will be selected
+     * @return the selected playlist
+     */
     public static Playlist selectPlaylist(Scanner scanner, List<Playlist> playlists) {
         if (playlists.isEmpty()) {
             return null;
@@ -117,7 +128,7 @@ public class Main {
                 index = scanner.nextInt();
                 scanner.nextLine();
             } else {
-                System.out.println("❌ Invalid input. Please enter a number.");
+                System.out.println("Invalid input. Please enter a number.");
                 scanner.next();
             }
         }

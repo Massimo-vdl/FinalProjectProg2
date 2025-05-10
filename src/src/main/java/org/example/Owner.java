@@ -3,6 +3,7 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,11 +19,12 @@ public class Owner extends User{
 
     /**
      * imports any type of audio from an outside txt file and adds it to a playlist
-     * @param playlist the playlist the audios are being added to
      */
-    public void importAudio(Playlist playlist) {
-        String filepath = "src/src/main/resources/Audios.txt";
-        try (Scanner scanner = new Scanner(new File(filepath))) {
+    public Playlist importAudio() {
+        Playlist playlist = new Playlist();
+        playlist.setTitle("Imported Playlist");
+
+        try (Scanner scanner = new Scanner(new File(playlist.getFilenameAudio()))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
@@ -56,9 +58,14 @@ public class Owner extends User{
                 }
             }
             System.out.println("Audio import complete.");
+            System.out.println("🎶 Final playlist after import:");
+            for (Audio a : playlist.getPlaylist()) {
+                System.out.println("- " + a.getTitle() + " by " + a.getCreator());
+            }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filepath);
+            System.out.println("File not found: " + "src/src/main/resources/Audios.txt");
         }
+        return playlist;
     }
 
     /**
@@ -77,5 +84,13 @@ public class Owner extends User{
         } catch (Exception e) {
             System.out.println("Error exporting playlist: " + e.getMessage());
         }
+    }
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
     }
 }

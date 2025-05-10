@@ -1,0 +1,8 @@
+Song,Travis Scott,Skeletons,145
+Song,Steve Lacy,Mercury,295
+Podcast,Joe Rogan,Joe Rogan Experience,3600
+Song,Many Men,21 Savage,202
+Song,Homecoming,Kanye West,204
+Song,Westley's Theory,Kendrick Lamar,287
+Song,The Motion,Drake,240
+Song,This Love,Maroon 5,207

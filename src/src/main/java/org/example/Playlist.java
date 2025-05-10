@@ -6,10 +6,12 @@ public class Playlist implements Playable{
     private String title;
     private Queue<Audio> playlist;
     private int rating;
+    private final String filenameAudio = "src/src/main/resources/Audios.txt";
 
     public Playlist() {
         this.title = "";
         this.playlist = new LinkedList<>();
+        this.rating = 0;
     }
 
     public Playlist(String title, Queue<Audio> playlist) {
@@ -188,5 +190,9 @@ public class Playlist implements Playable{
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getFilenameAudio() {
+        return filenameAudio;
     }
 }
