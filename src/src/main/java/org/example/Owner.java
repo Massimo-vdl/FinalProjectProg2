@@ -21,7 +21,7 @@ public class Owner extends User{
      * @param playlist the playlist the audios are being added to
      */
     public void importAudio(Playlist playlist) {
-        String filepath = "src/main/java/org/example/Audios.txt";
+        String filepath = "src/src/main/resources/Audios.txt";
         try (Scanner scanner = new Scanner(new File(filepath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -66,14 +66,14 @@ public class Owner extends User{
      * @param playlist the playlist that will be exported
      */
     public void exportPlaylist(Playlist playlist) {
-        try (FileWriter writer = new FileWriter("src/main/java/org/example/Playlist.txt")) {
+        try (FileWriter writer = new FileWriter("src/src/main/resources/Playlist.txt")) {
             for (Audio audio : playlist.getPlaylist()) {
                 writer.write(audio.getClass().getSimpleName() + "," +
                         audio.getCreator() + "," +
                         audio.getTitle() + "," +
                         audio.getDuration() + "\n");
             }
-            System.out.println("Playlist successfully exported to " + "src/main/java/org/example/Playlist.txt");
+            System.out.println("Playlist successfully exported to " + "src/src/main/resources/Playlist.txt");
         } catch (Exception e) {
             System.out.println("Error exporting playlist: " + e.getMessage());
         }
